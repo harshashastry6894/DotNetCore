@@ -22,7 +22,7 @@ namespace MyApp.Controllers
         public ActionResult<IEnumerable<Command>> GetCommands() => Ok(_repository.GetCommands());
 
         //GET api/commands/5
-        [HttpGet("{id}")]
-        public ActionResult<Command> GetCommandById(int id) => Ok(_repository.GetCommandById(id));
+        // [HttpGet("{id}")]
+        // public ActionResult<Command> GetCommandById(int id) => Ok(_repository.GetCommandById(id));
     }
 }

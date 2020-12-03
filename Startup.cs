@@ -27,7 +27,7 @@ namespace MyApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors();
             services.AddControllers();
             services.AddScoped<ICommanderRepo, MockCommanderRepo>();
             services.AddSwaggerGen(c =>
@@ -45,6 +45,10 @@ namespace MyApp
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyApp v1"));
             }
+            app.UseCors(builder => builder
+                         .AllowAnyOrigin()
+                         .AllowAnyMethod()
+                         .AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
