@@ -10,16 +10,19 @@ namespace MyApp.Controllers
     [ApiController]
     public class CommandsController : ControllerBase
     {
-        private readonly MockCommanderRepo _repository = new MockCommanderRepo();
+        private readonly ICommanderRepo _repository;
 
+        public CommandsController(ICommanderRepo repository)
+        {
+            _repository = repository;
+        }
+        
         //GET api/commands
         [HttpGet]
-        [Route("/")]
         public ActionResult<IEnumerable<Command>> GetCommands() => Ok(_repository.GetCommands());
 
         //GET api/commands/5
-        [HttpGet]
-        [Route("/{id}")]
+        [HttpGet("{id}")]
         public ActionResult<Command> GetCommandById(int id) => Ok(_repository.GetCommandById(id));
     }
 }

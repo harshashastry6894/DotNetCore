@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MyApp.Repository;
 
 namespace MyApp
 {
@@ -28,6 +29,7 @@ namespace MyApp
         {
 
             services.AddControllers();
+            services.AddScoped<ICommanderRepo, MockCommanderRepo>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyApp", Version = "v1" });
