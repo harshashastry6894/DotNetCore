@@ -11,10 +11,10 @@ OR
 7. Microsoft SQL server 2012 native client
 8. Microsoft SQL server 2019 (64-bit)
 9. Microsoft SQL server 2019 Setup
-10.Microsoft SQL server 2019 T-SQL Language Service
-11.Microsoft SQL server Management Studio
-12.Microsoft Visual C++ 2013
-13.Microsoft Visual C++ 2015-19
-14.Microsoft Visual C++ 2017
-15.Microsoft Visual Tools for Applications 2017
-16.Microsoft VSS writer
+10. Microsoft SQL server 2019 T-SQL Language Service
+11. Microsoft SQL server Management Studio
+12. Microsoft Visual C++ 2013
+13. Microsoft Visual C++ 2015-19
+14. Microsoft Visual C++ 2017
+15. Microsoft Visual Tools for Applications 2017
+16. Microsoft VSS writer
