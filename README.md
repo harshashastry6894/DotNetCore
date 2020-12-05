@@ -18,3 +18,11 @@ OR
 14. Microsoft Visual C++ 2017
 15. Microsoft Visual Tools for Applications 2017
 16. Microsoft VSS writer
+
+# To use db first approach
+dotnet ef dbcontext scaffold "Server=SHASTRY;Database=harshaDB;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models --force
+
+# To store connection string
+dotnet user-secrets init
+dotnet user-secrets set ConnectionStrings.HarshaDbConnection "Server=SHASTRY;Database=harshaDB;Trusted_Connection=True;"
+dotnet ef dbcontext scaffold Name=ConnectionStrings.HarshaDbConnection  Microsoft.EntityFrameworkCore.SqlServer -o Models --force
