@@ -19,6 +19,8 @@ OR
 15. Microsoft Visual Tools for Applications 2017
 16. Microsoft VSS writer
 
+# Steps to create a REST web api
+
 # To use db first approach
 dotnet ef dbcontext scaffold "Server=SHASTRY;Database=harshaDB;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models --force
 
