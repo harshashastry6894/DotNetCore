@@ -1,4 +1,5 @@
 using AutoMapper;
+using MyApp.Dtos.Params;
 using MyApp.Dtos.Rest;
 using MyApp.Models;
 
@@ -10,6 +11,7 @@ namespace MyApp.Profiles
         {
             //Source -> Target
             CreateMap<Command, CommandRest>();
+            CreateMap<CommandParams, Command>();
         }
     }
 

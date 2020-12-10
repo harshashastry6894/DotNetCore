@@ -31,8 +31,6 @@ namespace MyApp.Models
         {
             modelBuilder.Entity<Command>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("Command");
 
                 entity.Property(e => e.CodeFirst).HasMaxLength(50);
