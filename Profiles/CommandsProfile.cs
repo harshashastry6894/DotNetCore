@@ -8,6 +8,7 @@ namespace MyApp.Profiles
     {
         public CommandsProfile()
         {
+            //Source -> Target
             CreateMap<Command, CommandRest>();
         }
     }
