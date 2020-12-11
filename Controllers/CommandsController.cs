@@ -32,11 +32,20 @@ namespace MyApp.Controllers
 
         //GET api/commands/5
         [HttpPost]
-        public ActionResult<CommandRest> CreateCommand(CommandParams command) 
+        public ActionResult<CommandRest> CreateCommand(CommandParams command)
         {
-            var commandModel =  _mapper.Map<Command>(command);
+            var commandModel = _mapper.Map<Command>(command);
             _repository.CreateCommand(commandModel);
             return Ok(_mapper.Map<CommandRest>(commandModel));
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<CommandRest> UpdateCommand(int id, CommandParams command)
+        {
+            var commandModel = _repository.GetCommandById(id);
+            _mapper.Map(command, commandModel);
+            _repository.UpdateCommand(id, commandModel);
+            return NoContent();
         }
     }
 }

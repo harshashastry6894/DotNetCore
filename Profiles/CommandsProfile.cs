@@ -11,7 +11,7 @@ namespace MyApp.Profiles
         {
             //Source -> Target
             CreateMap<Command, CommandRest>();
-            CreateMap<CommandParams, Command>();
+            CreateMap<CommandParams, Command>().ReverseMap();
         }
     }
 

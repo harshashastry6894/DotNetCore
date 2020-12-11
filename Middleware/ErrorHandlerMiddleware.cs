@@ -44,7 +44,7 @@ namespace MyApp.Middleware
                         break;
                 }
 
-                var result = JsonSerializer.Serialize(new { message = error?.Message });
+                var result = JsonSerializer.Serialize(new { message = error?.Message, status= response.StatusCode });
                 await response.WriteAsync(result);
             }
         }

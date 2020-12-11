@@ -13,7 +13,6 @@ namespace MyApp.Repository
 
         public void CreateCommand(Command command)
         {
-            if(command == null) throw new GlobalException("Cannot create a command with null values");
             _context.Commands.Add(command);
             _context.SaveChanges();
         }
@@ -22,5 +21,10 @@ namespace MyApp.Repository
                                                      .FirstOrFail($"Command with {id} is not found");
 
         public IEnumerable<Command> GetCommands() => _context.Commands;
+
+        public void UpdateCommand(int id, Command command)
+        {
+            _context.SaveChanges();
+        }
     }
 }

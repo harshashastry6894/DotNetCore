@@ -5,9 +5,9 @@ namespace MyApp.Repository
 {
     public interface ICommanderRepo
     {
-        IEnumerable<Command> GetCommands();
+         IEnumerable<Command> GetCommands();
          Command GetCommandById(int id);   
-
-         void CreateCommand(Command command);  
+         void CreateCommand(Command command);
+         void UpdateCommand(int id, Command command); 
     }
 }
