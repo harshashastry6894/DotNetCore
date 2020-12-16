@@ -10,6 +10,7 @@ using Microsoft.OpenApi.Models;
 using MyApp.Middleware;
 using MyApp.Models;
 using MyApp.Repository;
+using Newtonsoft.Json.Serialization;
 
 namespace MyApp
 {
@@ -27,10 +28,18 @@ namespace MyApp
         {
             services.AddDbContext<harshaDBContext>(opt => opt.UseSqlServer
             (Configuration.GetConnectionString("HarshaDbConnection")));
+
             services.AddCors();
-            services.AddControllers();
+
+            services.AddControllers().AddNewtonsoftJson(s =>
+            {
+                s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddScoped<ICommanderRepo, CommanderRepo>();
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyApp", Version = "v1" });

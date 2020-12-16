@@ -8,6 +8,7 @@ namespace MyApp.Repository
          IEnumerable<Command> GetCommands();
          Command GetCommandById(int id);   
          void CreateCommand(Command command);
-         void UpdateCommand(int id, Command command); 
+         void UpdateCommand(int id, Command command);
+         void DeleteCommand(Command command);
     }
 }

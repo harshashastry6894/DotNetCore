@@ -17,6 +17,12 @@ namespace MyApp.Repository
             _context.SaveChanges();
         }
 
+        public void DeleteCommand(Command command)
+        {
+            _context.Commands.Remove(command);
+            _context.SaveChanges();
+        }
+
         public Command GetCommandById(int id) => _context.Commands.Where(p => p.Id == id)
                                                      .FirstOrFail($"Command with {id} is not found");
 
