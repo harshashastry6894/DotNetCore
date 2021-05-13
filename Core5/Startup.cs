@@ -28,6 +28,13 @@ namespace Core5
         {
 
             services.AddControllers();
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowAll", builder =>
+                builder.AllowAnyHeader()
+                .AllowAnyOrigin()
+                .AllowAnyMethod());
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Core5", Version = "v1" });
@@ -45,6 +52,8 @@ namespace Core5
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("AllowAll");
 
             app.UseRouting();
 
