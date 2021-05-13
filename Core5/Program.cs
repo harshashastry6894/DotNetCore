@@ -1,11 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Events;
+using Serilog.Formatting.Compact;
 
 namespace Core5
 {
@@ -13,7 +11,31 @@ namespace Core5
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            Log.Logger = new LoggerConfiguration()
+               .WriteTo.File(
+                   path: "D:\\DotNetCore\\Core5\\logs\\log-.txt",
+                   outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}",
+                   rollingInterval: RollingInterval.Day,
+                   restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information
+               )
+               .MinimumLevel.Information()
+                .WriteTo.Console()
+                .CreateLogger();
+
+            try
+            {
+                Log.Information("Application is starting");
+                CreateHostBuilder(args).Build().Run();
+
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Application failed to start");
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -21,6 +43,7 @@ namespace Core5
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                })
+                .UseSerilog();
     }
 }
