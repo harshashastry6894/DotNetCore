@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core5.Configurations;
 using Core5.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -39,6 +40,8 @@ namespace Core5
                 .AllowAnyOrigin()
                 .AllowAnyMethod());
             });
+
+            services.AddAutoMapper(typeof(MapperInitilizer));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Core5", Version = "v1" });
