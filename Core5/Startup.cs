@@ -1,19 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Core5.Configurations;
 using Core5.Data;
+using Core5.IRepository;
+using Core5.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Serialization;
 
 namespace Core5
 {
@@ -32,7 +28,9 @@ namespace Core5
             // DB context congiguration
             services.AddDbContext<DatabaseContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("sqlConnection")));
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(op =>
+                op.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
             services.AddCors(c =>
             {
                 c.AddPolicy("AllowAll", builder =>
@@ -40,8 +38,8 @@ namespace Core5
                 .AllowAnyOrigin()
                 .AllowAnyMethod());
             });
-
             services.AddAutoMapper(typeof(MapperInitilizer));
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Core5", Version = "v1" });
